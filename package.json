@@ -1,0 +1,27 @@
+{
+  "name": "domain_matrix",
+  "version": "1.0.0",
+  "description": "domain of the matrix",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viesal/domain_matrix.git"
+  },
+  "author": "viesal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viesal/domain_matrix/issues"
+  },
+  "homepage": "https://github.com/viesal/domain_matrix#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "css-loader": "^0.28.11",
+    "html-loader": "^0.5.5",
+    "style-loader": "^0.20.3",
+    "webpack": "^3.2.0"
+  }
+}
