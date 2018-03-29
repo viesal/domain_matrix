@@ -1,0 +1,11 @@
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+}
