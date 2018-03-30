@@ -3,7 +3,7 @@ import './style.css';
 
 window.onload = ()=>{
     let matrix = new Matrix(document.body);
-    matrix.create_matrix(10, 10);
+    matrix.create_matrix(5, 10);
 
     let button_find_domains = document.createElement('button')
     button_find_domains.innerHTML = 'Создать список доменов';

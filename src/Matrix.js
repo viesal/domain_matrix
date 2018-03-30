@@ -24,65 +24,141 @@ class Matrix{
     }
 
     check4true(x, y){
+        // console.log(x, y)
+        // console.log(this.matrix.childNodes[y].childNodes[x].innerHTML == '1')
         return this.matrix.childNodes[y].childNodes[x].innerHTML == '1'
     }
 
-    find_domains(){
-        let arr_of_true = [];
-        let domains = []
-        let domain = []
-        for (let [index_row, row] of this.matrix.childNodes.entries()){
-            for (let [index_item, item] of row.childNodes.entries()){
-                if (this.check4true(index_item, index_row)){
-                    // console.log(index_item, index_row);
-                    let start_domain = {x: index_item, y: index_row};
-                    arr_of_true.push(start_domain);
+    get_arr(){
+        let arr = []
+        for (let str of this.matrix.childNodes){
+            let row = []
+            for (let item of str.childNodes){
+                row.push(item.innerHTML)
+            }
+            arr.push(row);
+        }
+        return arr;
+    }
+
+    find_true_ell(){
+        let arr = this.get_arr();
+        let dom = []
+        for (let y in arr){
+            for (let x in arr[0]){
+                if (this.check4true(x, y)){
+                    let start_domain = {x: parseInt(x), y: parseInt(y)};
+                    dom.push(start_domain);
                 }
-
             }
         }
-        console.log(arr_of_true)
-        for (let item of arr_of_true){
-            console.log(item)
-            if (arr_of_true.indexOf(item) != -1){
-                console.log('!=1')
-            }
-            item.y+=1;
-            console.log(item)
-            if (arr_of_true.indexOf(item) != -1){
-                console.log('!=2')
-            }
-            // console.log(this.callback(arr_of_true, item))
-            // domain.push(this.callback(arr_of_true, item))
-        }
-        // console.log(domain)
+        return dom
     }
 
-    callback(arr, item){
-        let find = false;
-        let domain = []
-        if (arr.indexOf(item) != -1){
-            arr.slice(item, 1)
-            domain.push(item)
-        }
-        item.y+=1;
-        if (arr.indexOf(item) != -1){
-            arr.slice(item, 1)
-            domain.push(item)
-            item.x-=1;
-        }
-        else{
-            item.x+=1;
-            item.y-=1;
-        }
-        if (arr.indexOf(item) != -1){
-            arr.slice(item, 1)
-            domain.push(item)
-        }
-        return domain
+    find_domains(){
+        let arr = this.get_arr();
+        this.floodFill4(5, 10, arr)
     }
 
+    floodFill4(x, y, newColor, oldColor = null) 
+        { 
+          if (!oldColor){
+            oldColor = screenBuffer[x][y];
+          }
+          if(x >= 0 && x < screenBuffer.length && y >= 0 && y < screenBuffer[0].length && screenBuffer[x][y] == oldColor && screenBuffer[x][y] != newColor) 
+          { 
+            screenBuffer[x][y] = newColor; //set color before starting recursion
 
+            floodFill4(x + 1, y,   newColor, oldColor);
+            floodFill4(x - 1, y,   newColor, oldColor);
+            floodFill4(x,   y + 1, newColor, oldColor);
+            floodFill4(x,   y - 1, newColor, oldColor);
+          }   
+        }
+
+
+    // find_hor_vert(){
+
+    //     let arr = this.get_arr();
+    //     let hor = []
+    //     let dom_h = []
+    //     let vert = []
+    //     let dom_v = []
+    //     for (let i in arr){
+    //         for (let j in arr[i]){
+    //             if (this.check4true(j, i)){
+    //                 let start_domain = {x: j, y: i};
+    //                 dom_h.push(start_domain);
+    //             }
+    //             else{
+    //                 if (dom_h.length != 0){
+    //                     hor.push(dom_h)
+    //                     dom_h = []
+    //                 } 
+    //             }
+    //         }
+    //         if (dom_h.length != 0){
+    //             hor.push(dom_h)
+    //             dom_h = []
+    //         }
+    //     }
+
+    //     for (let i in arr[0]){
+    //         for (let j in arr){
+    //             if (this.check4true(i, j)){
+    //                 let start_domain = {x: i, y: j};
+    //                 dom_v.push(start_domain);
+    //             }
+    //             else{
+    //                 if (dom_v.length != 0){
+    //                     vert.push(dom_v)
+    //                     dom_v = []
+    //                 } 
+    //             }
+    //         }
+    //         if (dom_v.length != 0){
+    //             vert.push(dom_v)
+    //             dom_v = []
+    //         }
+    //     }
+    //     return [hor, vert]
+    // }
+    // find_domains(){
+
+    //     let [hor, vert] = this.find_hor_vert()
+
+    //     for (let item_h of hor){
+    //         for (let item_v of vert){
+    //             console.log('hor', hor);
+    //             console.log('vert', vert);
+    //             [item_h, item_v] = this.comp_arr(item_h, item_v);
+    //             // console.log('111', [...item_h], [...item_v])
+    //             if (item_v.length == 0){
+    //                 vert.splice(vert.indexOf(item_v), 1)
+    //             }
+    //         }
+    //     }
+
+    // }
+
+    // comp_arr(arr1, arr2) {
+    //     for (let item1 of arr1) {
+    //         for (let item2 of arr2) {
+    //             console.log(item1, item2)
+    //             if (item1.x == item2.x && item1.y == item2.y) {
+    //                 console.log('1arr1', [...arr1])
+    //                 console.log('1arr2', [...arr2])
+    //                 console.log(arr2.indexOf(item2))
+    //                 arr2.splice(arr2.indexOf(item2), 1)
+    //                 arr1.push(...arr2);
+    //                 arr2 = [];
+    //                 console.log('2arr1', [...arr1])
+    //                 console.log('2arr2', [...arr2])
+    //             }
+    //         }
+    //     }
+    //     return [arr1, arr2];
+    // }
 }
 
 export default Matrix;
