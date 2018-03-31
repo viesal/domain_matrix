@@ -16,11 +16,11 @@ class Matrix__element{
     }
     change(){
         if(this.element.innerHTML=='1'){
-            this.element.innerHTML = '0';
+            this.element.innerHTML = 0;
         }
         else {
-            this.element.innerHTML = '1';
-        }
+            this.element.innerHTML = 1;
+            }
     }
 }
 
