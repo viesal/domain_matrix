@@ -1,11 +1,41 @@
 .unselectable {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.row{
-  display: flex;
-  flex-direction: row;
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.controlPanel {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.controlPanel__group {
+    width: 40%;
+}
+
+.controlPanel__element {
+    width: 100%;
+    padding: 0.3em;
+    margin: 0.2em;
+}
+
+.table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.table__tr, .table__td {
+    border: 1px solid black;
+    text-align: center;
 }

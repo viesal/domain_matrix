@@ -1,36 +1,28 @@
 'use strict';
 
 module.exports = {
-  entry: "./src/index.js",
-  output: {
-    path: __dirname + '/static',
-    filename: "build.js"
-	},
-  watch: true,
+    entry: "./src/index.js",
+    output: {
+        path: __dirname + '/static',
+        filename: "build.js"
+    },
     module: {
         rules: [
             {
                 test: /\.js$/,
-                use: 'babel-loader',
-                exclude: [/node_modules/, /static/]
+                exclude: [/node_modules/, /static/],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['babel-preset-env']
+                    }
+                },
             },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
                 exclude: [/static/]
-            },
-            {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: "url-loader"
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                use: "file-loader"
-            },
-            {
-                test: /\.html$/,
-                use: 'html-loader'
-            },
+            }
         ]
     }
 };

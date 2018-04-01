@@ -4,7 +4,8 @@
   "description": "domain of the matrix",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
     "static": "^2.0.0",
     "style-loader": "^0.20.3",
     "webpack": "^3.2.0"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.6.1"
   }
 }
